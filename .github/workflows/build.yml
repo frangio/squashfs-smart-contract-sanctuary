@@ -19,6 +19,9 @@ jobs:
           - optimism
           - polygon
           - tron
+        include:
+          - chain: arbitrum
+            first: true
     steps:
       - uses: actions/checkout@v3
         with:
@@ -29,9 +32,9 @@ jobs:
           sudo apt-get update
           sudo apt-get install squashfs-tools
       - uses: actions/download-artifact@v3
+        if: '!matrix.first'
         with:
           name: artifact
-        continue-on-error: true
       - name: Build squashfs filesystem
         run: |
           mksquashfs ${{ matrix.chain }} smart-contract-sanctuary.sqsh -comp lzo -keep-as-directory -wildcards -e '... .git'
