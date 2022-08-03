@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -euo
+set -euo pipefail
 
 chains=(arbitrum avalanche bsc celo ethereum fantom optimism polygon tron)
 
