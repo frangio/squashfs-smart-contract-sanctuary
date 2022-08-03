@@ -1,0 +1,20 @@
+name: Build
+on: [push]
+concurrency: 
+  group: ${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          repository: tintinweb/smart-contract-sanctuary
+          submodules: true
+      - name: Install squashfs-tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install squashfs-tools
+      - name: Build squashfs filesystem
+        run: |
+          mksquashfs . smart-contract-sanctuary.sqsh -comp lzo -wildcards -e '... .git'
