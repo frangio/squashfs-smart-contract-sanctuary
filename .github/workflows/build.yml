@@ -10,8 +10,8 @@ jobs:
       max-parallel: 1
       matrix:
         chain:
-          - ethereum
-          - polygon
+          - arbitrum
+          - celo
     steps:
       - uses: actions/checkout@v3
         with:
