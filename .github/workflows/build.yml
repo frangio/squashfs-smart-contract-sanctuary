@@ -6,38 +6,13 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-    strategy:
-      max-parallel: 1
-      matrix:
-        chain:
-          - arbitrum
-          - avalanche
-          - bsc
-          - celo
-          - ethereum
-          - fantom
-          - optimism
-          - polygon
-          - tron
-        include:
-          - chain: arbitrum
-            first: true
     steps:
-      - uses: actions/checkout@v3
-        with:
-          repository: tintinweb/smart-contract-sanctuary-${{ matrix.chain }}
-          path: ${{ matrix.chain }}
       - name: Install squashfs-tools
         run: |
           sudo apt-get update
           sudo apt-get install squashfs-tools
-      - uses: actions/download-artifact@v3
-        if: '!matrix.first'
-        with:
-          name: artifact
-      - name: Build squashfs filesystem
-        run: |
-          mksquashfs ${{ matrix.chain }} smart-contract-sanctuary.sqsh -comp lzo -keep-as-directory -wildcards -e '... .git'
+      - uses: actions/checkout@v3
+      - run: bash build.sh
       - uses: actions/upload-artifact@v3
         with:
           name: artifact
