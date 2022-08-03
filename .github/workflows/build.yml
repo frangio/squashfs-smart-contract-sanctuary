@@ -27,7 +27,7 @@ jobs:
         continue-on-error: true
       - name: Build squashfs filesystem
         run: |
-          mksquashfs ${{ matrix.chain }} smart-contract-sanctuary.sqsh -comp lzo -no-strip -wildcards -e '... .git'
+          mksquashfs ${{ matrix.chain }} smart-contract-sanctuary.sqsh -comp lzo -keep-as-directory -wildcards -e '... .git'
       - uses: actions/upload-artifact@v3
         with:
           path: smart-contract-sanctuary.sqsh
