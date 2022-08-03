@@ -8,7 +8,9 @@ jobs:
     steps:
       - checkout
       - run: sudo apt-get install squashfs-tools
-      - run: bash build.sh
+      - run:
+          command: bash build.sh
+          no_output_timeout: 30m
 
 workflows:
   build-workflow:
