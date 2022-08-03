@@ -11,7 +11,14 @@ jobs:
       matrix:
         chain:
           - arbitrum
+          - avalanche
+          - bsc
           - celo
+          - ethereum
+          - fantom
+          - optimism
+          - polygon
+          - tron
     steps:
       - uses: actions/checkout@v3
         with:
