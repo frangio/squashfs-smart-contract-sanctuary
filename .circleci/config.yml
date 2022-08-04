@@ -4,13 +4,13 @@ jobs:
   build:
     machine:
       image: ubuntu-2204:2022.04.1
-    resource_class: medium
+    resource_class: large
     steps:
       - checkout
       - run: sudo apt-get install squashfs-tools
       - run:
           command: bash build.sh
-          no_output_timeout: 30m
+          no_output_timeout: 40m
 
 workflows:
   build-workflow:
