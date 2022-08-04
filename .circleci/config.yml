@@ -11,6 +11,8 @@ jobs:
       - run:
           command: bash build.sh
           no_output_timeout: 40m
+      - store_artifacts:
+          path: smart-contract-sanctuary.sqsh
 
 workflows:
   build-workflow:
