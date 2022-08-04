@@ -10,7 +10,7 @@ jobs:
       - run: sudo apt-get install squashfs-tools
       - run:
           command: bash build.sh
-          no_output_timeout: 40m
+          no_output_timeout: 20m
       - store_artifacts:
           path: smart-contract-sanctuary.sqsh
 
